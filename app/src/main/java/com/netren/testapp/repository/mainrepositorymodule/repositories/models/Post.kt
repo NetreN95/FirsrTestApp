@@ -1,6 +1,6 @@
-package com.netren.testapp.repository.repositories.models
+package com.netren.testapp.repository.mainrepositorymodule.repositories.models
 
-import com.netren.testapp.repository.repositories.networkrepository.jsonplaceholder.JSONPlaceholderPost
+import com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository.jsonplaceholder.JSONPlaceholderPost
 
 data class Post(
     var id: Int = 0,

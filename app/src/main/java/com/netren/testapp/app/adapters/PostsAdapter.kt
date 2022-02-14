@@ -1,18 +1,21 @@
 package com.netren.testapp.app.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.netren.testapp.databinding.ItemPostBinding
-import com.netren.testapp.repository.repositories.models.Post
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 
 class PostsAdapter : PagingDataAdapter<Post, PostsAdapter.Holder>(PostsDiffCallback()) {
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val post = getItem(position) ?: return
         with(holder.binding) {
-            titleTextView.text = post.title
+            //show id to see, that nothing is missed
+            titleTextView.text = "(${post.id}) ${post.title}"
             bodyTextView.text = post.body
         }
     }

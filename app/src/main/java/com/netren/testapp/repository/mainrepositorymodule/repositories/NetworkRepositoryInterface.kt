@@ -1,6 +1,6 @@
-package com.netren.testapp.repository.repositories
+package com.netren.testapp.repository.mainrepositorymodule.repositories
 
-import com.netren.testapp.repository.repositories.models.Post
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 
 interface NetworkRepositoryInterface {
     //get all of posts

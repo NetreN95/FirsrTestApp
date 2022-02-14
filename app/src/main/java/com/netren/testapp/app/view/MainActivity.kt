@@ -1,7 +1,6 @@
 package com.netren.testapp.app.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
@@ -14,18 +13,14 @@ import com.netren.testapp.app.adapters.TryAgainAction
 import com.netren.testapp.app.adapters.simpleScan
 import com.netren.testapp.app.view.viewmodel.MainViewModel
 import com.netren.testapp.databinding.ActivityMainBinding
-import com.netren.testapp.logic.usecases.GetPagedPostsUseCase
-import com.netren.testapp.repository.repositories.MainRepository
-import com.netren.testapp.repository.repositories.networkrepository.NetworkRepository
-import com.netren.testapp.repository.repositories.networkrepository.jsonplaceholder.JSONPlaceholderApiService
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 class MainActivity : AppCompatActivity() {

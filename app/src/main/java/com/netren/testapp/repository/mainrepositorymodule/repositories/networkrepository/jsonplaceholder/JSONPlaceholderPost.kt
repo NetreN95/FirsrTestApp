@@ -1,4 +1,4 @@
-package com.netren.testapp.repository.repositories.networkrepository.jsonplaceholder
+package com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository.jsonplaceholder
 
 import com.google.gson.annotations.SerializedName
 

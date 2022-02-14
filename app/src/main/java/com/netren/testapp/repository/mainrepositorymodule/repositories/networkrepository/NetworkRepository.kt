@@ -1,10 +1,10 @@
-package com.netren.testapp.repository.repositories.networkrepository
+package com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository
 
 import android.util.Log
-import com.netren.testapp.repository.repositories.NetworkRepositoryInterface
-import com.netren.testapp.repository.repositories.models.Post
-import com.netren.testapp.repository.repositories.networkrepository.jsonplaceholder.JSONPlaceholderApiService
-import com.netren.testapp.repository.repositories.networkrepository.jsonplaceholder.JSONPlaceholderPost
+import com.netren.testapp.repository.mainrepositorymodule.repositories.NetworkRepositoryInterface
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
+import com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository.jsonplaceholder.JSONPlaceholderApiService
+import com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository.jsonplaceholder.JSONPlaceholderPost
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 

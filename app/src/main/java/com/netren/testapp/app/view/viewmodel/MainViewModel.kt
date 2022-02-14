@@ -7,10 +7,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.netren.testapp.logic.usecases.GetPagedPostsUseCase
-import com.netren.testapp.repository.repositories.models.Post
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 
 @Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
@@ -22,6 +21,7 @@ class MainViewModel (private val getPagedPostsUseCase: GetPagedPostsUseCase) : V
     private val searchBy = MutableLiveData("")
 
     init {
+
         postsFlow = searchBy.asFlow()
             // if user types text too quickly -> filtering intermediate values to avoid excess loads
 //            .debounce(500)

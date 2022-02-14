@@ -1,11 +1,9 @@
-package com.netren.testapp.repository.repositories.pagination
+package com.netren.testapp.repository.mainrepositorymodule.pagination
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.netren.testapp.repository.repositories.models.Post
-
-typealias PostsPageLoader = suspend (pageSize: Int, pageIndex: Int) -> List<Post>
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 
 class PostsPagingSource(
     private val loader: PostsPageLoader,
@@ -23,23 +21,21 @@ class PostsPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Post> {
         // get the index of page to be loaded (it may be NULL, in this case let's load the first page with index = 0)
-        val pageIndex = params.key ?: 0
+        val pageIndex = params.key ?: 1
 
         return try {
 
-            Log.d("AAA", "val users = loader.invoke($pageIndex, ${params.loadSize})")
+            Log.d("AAA", "val data = loader.invoke($pageIndex, ${params.loadSize})")
 
             // loading the desired page of users
-            val users = loader.invoke(pageIndex, params.loadSize)
+            val data = loader.invoke(params.loadSize, pageIndex)
             // success! now we can return LoadResult.Page
-
-            val data = users
 
             Log.d("AAA", "data.size = ${data.size}")
 
 
             val prevKey =
-                if (pageIndex == 0)
+                if (pageIndex <= 1)
                     null
                 else
                     pageIndex - 1
@@ -54,7 +50,7 @@ class PostsPagingSource(
 
             Log.d("AAA", "nextKey = $nextKey")
 
-            val tmp = LoadResult.Page(
+            return LoadResult.Page(
                 data = data,
                 // index of the previous page if exists
                 prevKey = prevKey,
@@ -62,14 +58,13 @@ class PostsPagingSource(
                 // please note that 'params.loadSize' may be larger for the first load (by default x3 times)
                 nextKey = nextKey
             )
-
-            return tmp
         } catch (e: Exception) {
 
-            // failed to load users -> need to return LoadResult.Error
+            // failed to load posts -> need to return LoadResult.Error
             LoadResult.Error(
                 throwable = e
             )
         }
     }
+
 }
