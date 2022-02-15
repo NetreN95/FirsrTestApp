@@ -1,6 +1,5 @@
 package com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository
 
-import android.util.Log
 import com.netren.testapp.repository.mainrepositorymodule.repositories.NetworkRepositoryInterface
 import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 import com.netren.testapp.repository.mainrepositorymodule.repositories.networkrepository.jsonplaceholder.JSONPlaceholderApiService
@@ -16,26 +15,19 @@ class NetworkRepository(
     override suspend fun getPosts(limit: Int, page: Int): List<Post> =
         withContext(coroutineDispatcher) {
 
-            Log.d("AAA", "Before NetworkRepository.getPosts(limit = $limit, page = $page)")
+            val resultList = JSONPlaceholderApiService.getPosts(
+                limit = limit,
+                page = page
+            )
 
-            val tmpList = JSONPlaceholderApiService.getPosts(limit = limit, page = page)
-
-            Log.d("AAA", "After NetworkRepository.getPosts(limit = $limit, page = $page)")
-            Log.d("AAA", "tmpList.size = ${tmpList.size}")
-
-            return@withContext mapToPostsList(tmpList)
+            return@withContext mapToPostsList(resultList)
         }
 
     override suspend fun getPosts(): List<Post> = withContext(coroutineDispatcher) {
 
-        Log.d("AAA", "Before NetworkRepository.getPosts()")
+        val resultList = JSONPlaceholderApiService.getPosts()
 
-        val tmpList = JSONPlaceholderApiService.getPosts()
-
-        Log.d("AAA", "After NetworkRepository.getPosts()")
-        Log.d("AAA", "tmpList.size = ${tmpList.size}")
-
-        return@withContext mapToPostsList(tmpList)
+        return@withContext mapToPostsList(resultList)
     }
 
     private fun mapToPostsList(jsonPlaceholderPostsList: List<JSONPlaceholderPost>): List<Post> {

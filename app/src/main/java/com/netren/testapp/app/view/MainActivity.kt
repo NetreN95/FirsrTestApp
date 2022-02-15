@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
         observeUsers(adapter)
         observeLoadState(adapter)
 
-        handleScrollingToTopWhenSearching(adapter)
         handleListVisibility(adapter)
     }
 
@@ -90,19 +89,6 @@ class MainActivity : AppCompatActivity() {
                 mainLoadStateHolder.bind(state.refresh)
             }
         }
-    }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    private fun handleScrollingToTopWhenSearching(adapter: PostsAdapter) = lifecycleScope.launch {
-        // list should be scrolled to the 1st item (index = 0) if data has been reloaded:
-        // (prev state = Loading, current state = NotLoading)
-        getRefreshLoadStateFlow(adapter)
-            .simpleScan(count = 2)
-            .collectLatest { (previousState, currentState) ->
-                if (previousState is LoadState.Loading && currentState is LoadState.NotLoading) {
-                    binding.postsRecyclerView.scrollToPosition(0)
-                }
-            }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

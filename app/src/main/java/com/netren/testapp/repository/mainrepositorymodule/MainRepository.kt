@@ -4,10 +4,10 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.netren.testapp.repository.MainRepositoryInterface
-import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 import com.netren.testapp.repository.mainrepositorymodule.pagination.PostsPageLoader
 import com.netren.testapp.repository.mainrepositorymodule.pagination.PostsPagingSource
 import com.netren.testapp.repository.mainrepositorymodule.repositories.NetworkRepositoryInterface
+import com.netren.testapp.repository.mainrepositorymodule.repositories.models.Post
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -39,10 +39,10 @@ class MainRepository(
         ).flow
     }
 
-    suspend fun getPosts(limit: Int, page: Int): List<Post> =
+    private suspend fun getPosts(limit: Int, page: Int): List<Post> =
         withContext(coroutineDispatcher) {
             //To see loading state
-            delay(2000)
+            delay(500)
             return@withContext networkRepository.getPosts(limit = limit, page = page)
         }
 }

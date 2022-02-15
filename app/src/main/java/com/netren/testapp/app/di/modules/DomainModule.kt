@@ -4,7 +4,7 @@ import com.netren.testapp.logic.usecases.GetPagedPostsUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
-    factory<GetPagedPostsUseCase> {
+    factory {
         GetPagedPostsUseCase(
             mainRepository = get()
         )
